@@ -179,6 +179,30 @@ An overview of the different types of joins:
 
 > Return a joined table containing `id, claim_date, travel_time, claim_amt` from claim, `car_type, car_use` from car, `first_name, last_name` from client and `state, city` from address.
 
+'''sql
+SELECT
+    c.id AS claim_id,
+    c.claim_date,
+    c.travel_time,
+    c.claim_amt,
+    car.car_type,
+    car.car_use,
+    client.first_name,
+    client.last_name,
+    address.state,
+    address.city
+FROM
+    claim AS c
+INNER JOIN
+    car ON c.car_id = car.id
+INNER JOIN
+    client ON c.client_id = client.id
+INNER JOIN
+    address ON client.address_id = address.id;
+
+'''
+
+
 ### Cross join
 
 A cross join returns the Cartesian product of the two tables. It is not useful for this database, but assuming we have an employees table with the following columns:
