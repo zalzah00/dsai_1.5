@@ -353,6 +353,14 @@ To return a different rank for each row, use the `ROW_NUMBER` window function in
 
 > Return a table containing `id, car_id, travel_time, rank` from claim, where `rank` is the rank of the `travel_time` in descending order for each `car_id`.
 
+```sql
+SELECT
+  id, car_id, claim_amt,
+  SUM(claim_amt) OVER (PARTITION BY car_id ORDER BY id) AS running_total
+FROM claim
+ORDER BY car_id ASC;
+```
+
 ### Qualify
 
 The `QUALIFY` clause is used to filter rows in a window. It is useful when you want to filter rows based on the result of a window function. For example, if we want to return the rows with a rank of 1:
