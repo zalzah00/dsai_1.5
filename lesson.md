@@ -179,7 +179,7 @@ An overview of the different types of joins:
 
 > Return a joined table containing `id, claim_date, travel_time, claim_amt` from claim, `car_type, car_use` from car, `first_name, last_name` from client and `state, city` from address.
 
-'''sql
+```sql
 SELECT
     c.id AS claim_id,
     c.claim_date,
@@ -199,8 +199,7 @@ INNER JOIN
     client ON c.client_id = client.id
 INNER JOIN
     address ON client.address_id = address.id;
-
-'''
+```
 
 
 ### Cross join
