@@ -310,6 +310,14 @@ FROM claim;
 
 > Return a table containing `id, car_id, travel_time, running_total` from claim, where `running_total` is the running sum of the `travel_time` column for each `car_id`.
 
+```sql
+SELECT
+	id AS claim_id, car_id, travel_time, 
+	sum(travel_time) OVER (PARTITION BY car_id ORDER BY claim_id) AS running_total
+FROM claim;
+```
+
+
 ### Rank
 
 The `RANK` window function computes the rank of a row in an ordered window. The rank of a row is the number of rows that come before the row, plus one. For example, the rank of the following column:
